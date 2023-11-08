@@ -64,19 +64,99 @@ function joc(){
 }
 
 
-function novaPartida(){
+let contB = 0;
+let contMa = 0;
+let contT = 0;
+let contM = 0;
 
-    let abc = ['a','b','c','d','e','f','g'];
+function novaPartida() {
+    document.getElementById('abecedari').innerHTML = '';
+    document.getElementById('jocPenjat').innerHTML = '';
+    document.getElementById('lletresUtilitzades').innerHTML = '';
+    document.getElementById('result').innerHTML = '';
+
+    let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+    let paraure = prompt("Introdueix una paraula");
+    let posi = "";
+    for (let m = 0; m < paraure.length; m++) {
+        posi += "_ ";
+    }
+    document.getElementById('jocPenjat').innerHTML = posi;
+
+   
+    document.getElementById('imatgePenjat').src = "penjat_" + contM + ".png";
 
     for (let m = 0; m < abc.length; m++) {
         let letter = abc[m];
         let button = document.createElement('button');
         button.innerHTML = letter;
-        button.onclick = function() {
-            clickLletra(letter);
+        document.getElementById('abecedari').appendChild(button);
+        button.onclick = function () {
+            this.disabled = true;
+            let encontrada = false;
+            let conprova = '';
+            if (contM < 6) {
+                while (conprova !== paraure) {
+                    for (let m = 0; m < paraure.length; m++) {
+                        if (paraure[m] === letter) {
+                            posi = posi.substring(0, 2 * m) + letter + posi.substring(2 * m + 1);
+                            document.getElementById('jocPenjat').textContent = posi.trim();
+                            encontrada = true;
+                        }
+                    }
+                    for (let n = 0; n < posi.length; n += 2) {
+                        conprova += posi[n];
+                    }
+                    if (!encontrada) {
+                        contM++;
+                        document.getElementById('lletresUtilitzades').innerHTML += letter;
+                        document.getElementById('imatgePenjat').src = "penjat_" + contM + ".png";
+                    }
+                    if (contM === 6) {
+                        contMa++;
+                        contT++;
+                        document.getElementById('result').innerHTML = "mor penjat";
+                        let buttons = document.getElementById('abecedari').querySelectorAll('button');
+                        buttons.forEach(function(button) {
+                            button.disabled = true;
+                        });
+                    }
+                    if (conprova === paraure) {
+                        contB++;
+                        contT++;
+                        document.getElementById('result').innerHTML = "enhorabona";
+                        let buttons = document.getElementById('abecedari').querySelectorAll('button');
+                        buttons.forEach(function(button) {
+                            button.disabled = true;
+                        });
+                    
+                    }
+                    clickLletra(letter);
+
+                }
+            }
         };
-        document.body.appendChild(button);
+        
     }
+
     
 
+};
+function estadistica(){
+        let estadistica=("Total de partides: " + contT +
+         "</br>Partides guanyades (" + ((contB / contT) * 100) + "%): " + contB+
+         "</br>Partides perdudes (" + ((contMa / contT) * 100) + "%): " + contMa);
+    
+        let myWindow = window.open("","_blank");
+        myWindow.document.write(estadistica);
+
+    }
+
+function borraEstadistica(){
+    contB = 0;
+    contMa = 0;
+    contT = 0;
+    contM = 0;
 }
+
