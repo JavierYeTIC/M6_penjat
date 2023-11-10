@@ -5,18 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="classe18.js"></script>
+    <style>
+        button{
+            font-size: large;
+            margin: 1px;
+            border-radius: 7px;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="joc()">joc</button><br><br><br><br>
+    <button onclick="joc()">joc</button><br><br><br><br><br><br>
 
-
-    <button onclick="novaPartida()">novaPartida</button>
-    <button onclick="estadistica()">estadística</button>
-    <button onclick="borraEstadistica()">borraEstadística</button><br><br><br><br>
+    <div style="text-align: center;">
+    <button onclick="novaPartida()" style="background-color: rgb(39, 175, 39); font-size: large; padding: 5px;">novaPartida</button>
+    <button onclick="estadistica()" style="background-color: rgb(49, 145, 172); font-size: large; margin: 20px; padding: 5px;;">estadística</button>
+    <button onclick="borraEstadistica()" style="background-color: rgb(249, 208, 6); font-size: large; padding: 5px;">borraEstadística</button><br><br><br><br>
+    </div>
  
     <div id="jocPenjat" style="text-align: center;margin: 20px;font-size: 50px;"></div> 
-    <div id="abecedari" style="text-align: center;"></div> 
-    <img src="" id="imatgePenjat" /> 
+    <div id="abecedari" style="text-align: center; font-size: 40px; size: 50px;" ></div> 
+    <img src="" id="imatgePenjat" style=" margin-left :45%"/> 
     <div id="lletresUtilitzades" style="text-align: center;margin: 20px;font-size: 50px;"></div> 
     <div id="result" style="text-align: center;margin: 20px;font-size: 50px;"></div>
 
