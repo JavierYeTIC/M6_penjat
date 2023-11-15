@@ -74,7 +74,11 @@ function novaPartida() {
     document.getElementById('jocPenjat').innerHTML = '';
     document.getElementById('lletresUtilitzades').innerHTML = '';
     document.getElementById('result').innerHTML = '';
+    document.getElementById('imatgePenjat').src = "penjat_" + 0 + ".png";
 
+    let contM = 0;
+
+    
     let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     let paraure = prompt("Introdueix una paraula");
